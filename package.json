@@ -1,0 +1,18 @@
+{
+  "name": "facuet",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "frog dev",
+    "serve": "bun run src/index.tsx"
+  },
+  "dependencies": {
+    "frog": "latest",
+    "hono": "^4",
+    "viem": "^2.13.2"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "bun": "latest"
+  }
+}
