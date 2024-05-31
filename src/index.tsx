@@ -2,7 +2,7 @@ import { Button, Frog, TextInput } from 'frog'
 import { devtools } from 'frog/dev'
 import { serveStatic } from 'frog/serve-static'
 
-import { registerUser } from './lib/farcaster.js'
+import { isUserRegistered, registerUser } from './lib/faucet.js'
 
 export const app = new Frog({
   // Supply a Hub to enable frame verification.
@@ -10,28 +10,54 @@ export const app = new Frog({
 })
 
 app.frame('/', (c) => {
-  const { status } = c
+  // Fetch if user is registered
+
   return c.res({
-    action: '/finish',
+    action: '/registerOrClaim',
     image: (
-      <div style={{ color: 'white', display: 'flex', fontSize: 60 }}>
+      <div style={{ color: 'white', display: 'flex', fontSize: 120 }}>
           Faucet
       </div>
     ),
     intents: [
-      <Button.Transaction target="register">Register</Button.Transaction>
+      <Button>Check claimability!</Button>
     ],
   })
 })
 
-app.frame('/finish', (c) => {
+
+app.frame('/registerOrClaim', (c) => {
+  // Fetch if user is registered
+  const { fid } = c.frameData || {}
+  if (!fid) {
+    return  c.error({ message: 'No fid'})// TODO: update message error 
+  }
+
+  const {} = isUserRegistered(fid)
+
+  return c.res({
+    image: (
+      <div style={{ color: 'white', display: 'flex', fontSize: 120 }}>
+          Faucet
+      </div>
+    ),
+    intents: [
+      <Button.Transaction target="register">Register or claim!</Button.Transaction>
+    ],
+  })
+})
+
+app.frame('/registered', async (c) => {
   const { transactionId } = c
   return c.res({
     image: (
-      <div style={{ color: 'white', display: 'flex', fontSize: 60 }}>
-        Transaction ID: {transactionId}
+      <div style={{ color: 'white', display: 'flex', fontSize: 120 }}>
+        Registered successfuly! {transactionId}
       </div>
-    )
+    ),
+    intents: [
+      <Button.Reset>Done!</Button.Reset>,
+    ]
   })
 })
 
