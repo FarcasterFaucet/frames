@@ -26,7 +26,7 @@ app.frame("/", (c) => {
     action: "/checkClaim",
     image: (
       <Container>
-        <ContainerItem data="Join the excitement at ETH-Prague with our exclusive token distribution faucet system" />
+        <ContainerItem data="Join the excitement at ETH-Prague with our exclusive token distribution faucet" />
       </Container>
     ),
     intents: [
@@ -51,7 +51,13 @@ app.frame("/checkClaim", async (c) => {
     action: canClaim ? "/claimed" : "/registered",
     image: (
       <Container>
-        <ContainerItem data=" This is your chance to claim MTK tokens. To participate, all you need is a valid Farecaster account and register to the faucet" />
+        {canClaim ? (
+          <Claim />
+        ) : registeredNextPeriod ? (
+          <ClaimTime />
+        ) : (
+          <ContainerItem data="Register for next period and claim MTK tokens" />
+        )}
       </Container>
     ),
     intents: [
