@@ -14,6 +14,38 @@ export const faucetABI = [
     type: "function",
   },
   {
+    inputs: [],
+    name: "firstPeriodStart",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_periodNumber",
+        type: "uint256",
+      },
+    ],
+    name: "getPeriodIndividualPayout",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
     inputs: [
       {
         internalType: "uint256",

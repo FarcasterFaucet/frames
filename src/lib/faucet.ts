@@ -37,13 +37,24 @@ export async function getUserStatus(fid: number) {
   };
 }
 
-export function getPeriodLength(contract: any) {
-  return contract.read.periodLength();
+export async function getNextPeriodStart() {
+  const [firstPeriodStart, periodLength, currentPeriod] = await Promise.all([
+    contract.read.firstPeriodStart(),
+    contract.read.periodLength(),
+    contract.read.getCurrentPeriod(),
+  ]);
+
+  return firstPeriodStart + periodLength * (currentPeriod + 1n);
+}
+
+export async function getCurrentPeriodPayout() {
+  const currentPeriod = await contract.read.getCurrentPeriod();
+  return contract.read.getPeriodIndividualPayout([currentPeriod]);
 }
 
 // contract instance comes instantiated with the corresponding transport value
-export function registerUser(contract: any) {
-  return contract({
+export function registerUser(c: any) {
+  return c.contract({
     abi: faucetABI,
     chainId: `eip155:${OP_CHAIN_ID}`,
     functionName: "claimAndOrRegister",

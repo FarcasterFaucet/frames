@@ -2,6 +2,15 @@ import { Button, Frog } from "frog";
 import { devtools } from "frog/dev";
 import { serveStatic } from "frog/serve-static";
 import { getUserStatus, registerUser } from "./lib/faucet.js";
+import { ClaimTime } from "./components/ClaimTime.js";
+import Claim from "./components/Claim.js";
+
+const imageStyles = {
+  background: "white",
+  display: "flex",
+  fontSize: 50,
+  height: "100%",
+};
 
 export const app = new Frog({
   // Supply a Hub to enable frame verification.
@@ -13,7 +22,7 @@ app.frame("/", (c) => {
 
   return c.res({
     action: "/checkClaim",
-    image: <div style={{ display: "flex", fontSize: 120 }}>Faucet</div>,
+    image: <div style={imageStyles}>Faucet</div>,
     intents: [<Button>Check claimability!</Button>],
   });
 });
@@ -30,12 +39,14 @@ app.frame("/checkClaim", async (c) => {
   return c.res({
     action: canClaim ? "/claimed" : "/registered",
     image: (
-      <div style={{ display: "flex", fontSize: 120 }}>
-        {canClaim
-          ? "You can now claim!"
-          : registeredNextPeriod
-            ? "You can claim on..."
-            : "Register for next period"}
+      <div style={imageStyles}>
+        {canClaim ? (
+          <Claim />
+        ) : registeredNextPeriod ? (
+          <ClaimTime />
+        ) : (
+          "Register for next period"
+        )}
       </div>
     ),
     intents: [
@@ -53,16 +64,14 @@ app.transaction("claimAndOrRegister", (c) => {
     return; //throw error
   }
 
-  return registerUser(c.contract);
+  return registerUser(c);
 });
 
 app.frame("/registered", async (c) => {
   const { transactionId } = c;
   return c.res({
     image: (
-      <div style={{ display: "flex", fontSize: 120 }}>
-        Registered successfuly! {transactionId}
-      </div>
+      <div style={imageStyles}>Registered successfuly! {transactionId}</div>
     ),
     intents: [<Button.Reset>Done!</Button.Reset>],
   });
@@ -71,11 +80,7 @@ app.frame("/registered", async (c) => {
 app.frame("/claimed", async (c) => {
   const { transactionId } = c;
   return c.res({
-    image: (
-      <div style={{ display: "flex", fontSize: 120 }}>
-        Claimed successfuly! {transactionId}
-      </div>
-    ),
+    image: <div style={imageStyles}>Claimed successfuly! {transactionId}</div>,
     intents: [<Button.Reset>Done!</Button.Reset>],
   });
 });
