@@ -12,18 +12,29 @@ const imageStyles = {
   height: "100%",
 };
 
+import { Container, ContainerItem } from "./components/index.js";
 export const app = new Frog({
   // Supply a Hub to enable frame verification.
   // hub: neynar({ apiKey: 'NEYNAR_FROG_FM' }),
 });
 
 app.frame("/", (c) => {
-  // Fetch if user is registered
+  //first framer rendered
+  //our protocol
 
   return c.res({
     action: "/checkClaim",
-    image: <div style={imageStyles}>Faucet</div>,
-    intents: [<Button>Check claimability!</Button>],
+    image: (
+      <Container>
+        <ContainerItem data="Join the excitement at ETH-Prague with our exclusive token distribution faucet" />
+      </Container>
+    ),
+    intents: [
+      <Button>Next</Button>,
+      <Button.Link href="https://github.com/FarcasterFaucet/faucet-land">
+        How it works ?
+      </Button.Link>,
+    ],
   });
 });
 
@@ -39,20 +50,14 @@ app.frame("/checkClaim", async (c) => {
   return c.res({
     action: canClaim ? "/claimed" : "/registered",
     image: (
-      <div style={imageStyles}>
-        {canClaim ? (
-          <Claim />
-        ) : registeredNextPeriod ? (
-          <ClaimTime />
-        ) : (
-          "Register for next period"
-        )}
-      </div>
+      <Container>
+        <ContainerItem data=" This is your chance to claim MTK tokens. To participate, all you need is a valid Farecaster account." />
+      </Container>
     ),
     intents: [
       (canClaim || !registeredNextPeriod) && (
         <Button.Transaction target="/claimAndOrRegister">
-          {canClaim ? "Claim!" : "Register!"}
+          {canClaim ? "Claim" : "Register"}
         </Button.Transaction>
       ),
     ],

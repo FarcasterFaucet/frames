@@ -9,46 +9,86 @@ export const Container = ({
     <div
       style={{
         display: "flex",
-        padding: 30,
-        flexDirection: "column",
-        alignItems: `${center ? "center" : "flex-start"}`,
-        justifyContent: `${center ? "center" : "flex-start"}`,
-        gap: 20,
         height: "100%",
         width: "100%",
+        alignItems: "center",
+        backgroundImage: "linear-gradient(to bottom, #dbf4ff, #fff1f1)",
+        justifyContent: "center",
+        letterSpacing: "-.02em",
+        fontWeight: 700,
+        background: "white",
       }}
     >
-      {children}
+      <div
+        style={{
+          left: 42,
+          top: 42,
+          position: "absolute",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <span
+          style={{
+            width: 24,
+            height: 24,
+            background: "black",
+          }}
+        />
+
+        <span
+          style={{
+            marginLeft: 8,
+            fontSize: 40,
+          }}
+        >
+          claimr
+        </span>
+      </div>
       <div
         style={{
           display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-end",
-          fontStyle: "oblique",
-          position: "absolute",
-          bottom: "5%",
-          width: "100%",
-          height: "auto",
-          fontSize: 25,
+          flexWrap: "wrap",
+          justifyContent: "center",
+          padding: "20px 50px",
+          margin: "0 42px",
+          fontSize: 40,
+          width: "auto",
+          maxWidth: "80%",
+          borderRadius: 20,
+          textAlign: "center",
+          backgroundColor: "none",
           color: "white",
+          lineHeight: 1.4,
         }}
       >
-        powered by: GrabIt
+        {children}
       </div>
     </div>
   );
 };
 
-export const Title = ({ title }: { title: string }) => {
+export const ContainerItem = ({ data }: { data: string }) => {
   return (
     <div
       style={{
-        color: "white",
-        fontSize: 80,
-        fontWeight: "bold",
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        padding: "20px 50px",
+        margin: "0 42px",
+        fontSize: 40,
+        width: "auto",
+        maxWidth: "90%",
+        borderRadius: 20,
+        textAlign: "justify",
+        backgroundColor: "white",
+        boxShadow: "10px 10px 5px",
+        color: "black",
+        lineHeight: 1.4,
       }}
     >
-      {title}
+      {data}
     </div>
   );
 };
