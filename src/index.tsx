@@ -1,9 +1,8 @@
-import { Button, Frog, TextInput } from "frog";
+import { Button, Frog } from "frog";
 import { devtools } from "frog/dev";
 import { serveStatic } from "frog/serve-static";
 
 import { getUserStatus, registerUser } from "./lib/faucet.js";
-import { Box } from "./components/index.js";
 
 export const app = new Frog({
   // Supply a Hub to enable frame verification.
@@ -15,11 +14,7 @@ app.frame("/", (c) => {
 
   return c.res({
     action: "/checkClaim",
-    image: (
-      <div style={{ color: "white", display: "flex", fontSize: 120 }}>
-        Faucet
-      </div>
-    ),
+    image: <div style={{ display: "flex", fontSize: 120 }}>Faucet</div>,
     intents: [<Button>Check claimability!</Button>],
   });
 });
@@ -31,22 +26,25 @@ app.frame("/checkClaim", async (c) => {
     return c.error({ message: "No fid" }); // TODO: update message error
   }
 
-  const { canClaim, registered } = await getUserStatus(fid);
+  const { canClaim, registeredNextPeriod } = await getUserStatus(fid);
+
+  console.log("can claim", canClaim);
+  console.log("registered next", registeredNextPeriod);
 
   return c.res({
     action: canClaim ? "/claimed" : "/registered",
     image: (
-      <div style={{ color: "white", display: "flex", fontSize: 120 }}>
+      <div style={{ display: "flex", fontSize: 120 }}>
         {canClaim
           ? "You can now claim!"
-          : registered
-          ? "You can claim on..."
-          : "Register for next period"}
+          : registeredNextPeriod
+            ? "You can claim on..."
+            : "Register for next period"}
       </div>
     ),
     intents: [
-      (canClaim || !registered) && (
-        <Button.Transaction target="claimAndOrRegister">
+      (canClaim || !registeredNextPeriod) && (
+        <Button.Transaction target="/claimAndOrRegister">
           {canClaim ? "Claim!" : "Register!"}
         </Button.Transaction>
       ),
@@ -54,11 +52,20 @@ app.frame("/checkClaim", async (c) => {
   });
 });
 
+app.transaction("claimAndOrRegister", (c) => {
+  console.log("got to tx");
+  if (!c.frameData?.fid) {
+    return; //throw error
+  }
+
+  return registerUser(c.contract);
+});
+
 app.frame("/registered", async (c) => {
   const { transactionId } = c;
   return c.res({
     image: (
-      <div style={{ color: "white", display: "flex", fontSize: 120 }}>
+      <div style={{ display: "flex", fontSize: 120 }}>
         Registered successfuly! {transactionId}
       </div>
     ),
@@ -66,11 +73,16 @@ app.frame("/registered", async (c) => {
   });
 });
 
-app.transaction("claimAndOrRegister", (c) => {
-  if (!c.frameData?.fid) {
-    return; //throw error
-  }
-  return registerUser(c.contract, c.frameData.fid);
+app.frame("/claimed", async (c) => {
+  const { transactionId } = c;
+  return c.res({
+    image: (
+      <div style={{ display: "flex", fontSize: 120 }}>
+        Claimed successfuly! {transactionId}
+      </div>
+    ),
+    intents: [<Button.Reset>Done!</Button.Reset>],
+  });
 });
 
 app.use("/*", serveStatic({ root: "./public" }));

@@ -1,7 +1,13 @@
-import { createPublicClient, getContract, http } from "viem";
+import {
+  createPublicClient,
+  getContract,
+  http,
+  parseAbi,
+  parseEther,
+} from "viem";
 import { optimism } from "viem/chains";
 import { FAUCET_CONTRACT_ADDRESS, OP_CHAIN_ID } from "./utils.js";
-import faucetABI from "../abi/faucetABI.json";
+import { faucetABI } from "../abi/faucetABI";
 
 const publicClient = createPublicClient({
   chain: optimism,
@@ -15,13 +21,19 @@ const contract = getContract({
 });
 
 export async function getUserStatus(fid: number) {
-  const [currentPeriod, claimer] = await Promise.all([
-    contract.read.getCurrentPeriod(),
-    contract.read.claimer(fid),
-  ]);
+  const [currentPeriod, [registeredClaimPeriod, latestClaimPeriod]] =
+    await Promise.all([
+      contract.read.getCurrentPeriod(),
+      contract.read.claimers([fid]),
+    ]);
+
+  const registeredNextPeriod = registeredClaimPeriod == currentPeriod + 1n;
+
   return {
-    canClaim: claimer.latestClaimPeriod < currentPeriod,
-    registered: claimer.registeredClaimPeriod === currentPeriod,
+    canClaim:
+      latestClaimPeriod < currentPeriod &&
+      registeredClaimPeriod === currentPeriod,
+    registeredNextPeriod: registeredNextPeriod,
   };
 }
 
@@ -29,12 +41,13 @@ export function getPeriodLength(contract: any) {
   return contract.read.periodLength();
 }
 
-export function registerUser(contract: any, fid: number) {
+// contract instance comes instantiated with the corresponding transport value
+export function registerUser(contract: any) {
   return contract({
     abi: faucetABI,
     chainId: `eip155:${OP_CHAIN_ID}`,
-    functionName: "register",
-    args: [fid],
+    functionName: "claimAndOrRegister",
+    args: [],
     to: FAUCET_CONTRACT_ADDRESS,
   });
 }
