@@ -28,9 +28,6 @@ app.frame("/checkClaim", async (c) => {
 
   const { canClaim, registeredNextPeriod } = await getUserStatus(fid);
 
-  console.log("can claim", canClaim);
-  console.log("registered next", registeredNextPeriod);
-
   return c.res({
     action: canClaim ? "/claimed" : "/registered",
     image: (
@@ -53,7 +50,6 @@ app.frame("/checkClaim", async (c) => {
 });
 
 app.transaction("claimAndOrRegister", (c) => {
-  console.log("got to tx");
   if (!c.frameData?.fid) {
     return; //throw error
   }
