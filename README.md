@@ -7,9 +7,10 @@ The project is configured in Vercel through environment variables. Here is the l
 - `APP_OWNER_FID` - a unique user number in Farcaster, the application administrator.
 - `APP_PK` - an ETH-compatible private key in 0x format for signing messages.
 - `APP_SHARE_URL` - the link to the Frame itself after deployment, needed to share the Quiz with other users.
-- `APP_AUTH_URL` - not required. The link to the authorization Frame. You can provide your own if the standard one doesn't fit.
-- `APP_TITLE` - not required. The title of your application.
-- `KV_NAMESPACE` - not required. A unique namespace for your application. Required only if multiple applications use the same KV storage.
+- `AUTH_SERVICE_ADDRESS` - **not required**. Auth signer address from https://github.com/DappyKit/farcaster-auth.
+- `APP_AUTH_URL` - **not required**. The link to the authorization Frame. You can provide your own if the standard one doesn't fit.
+- `APP_TITLE` - **not required**. The title of your application.
+- `KV_NAMESPACE` - **not required**. A unique namespace for your application. Required only if multiple applications use the same KV storage.
 
 ## Create your custom Quiz with ChatGPT
 

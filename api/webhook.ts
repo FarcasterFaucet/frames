@@ -29,7 +29,7 @@ export default async function handler(request: VercelRequest, response: VercelRe
       'focus drama print win destroy venue term alter cheese retreat office cannon',
     )
     const appPk = process.env.APP_PK as `0x${string}`
-    const authServiceAddress = process.env.AUTH_SERVICE_ADDRESS
+    const authServiceAddress = process.env.AUTH_SERVICE_ADDRESS || '0x5c15F64324206854eFEFabcee15f79e9F4bec590'
 
     if (!appPk || !authServiceAddress) {
       const error = 'Environment variables are not set properly.'
