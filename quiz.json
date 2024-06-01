@@ -1,0 +1,20 @@
+{
+  "shortDescription": "Test your knowledge of computer science with this quiz.",
+  "questions": [
+    {
+      "question": "What is RAM?",
+      "answers": ["Memory", "CPU", "Cache"],
+      "correctAnswerIndex": 0
+    },
+    {
+      "question": "What is HTTP?",
+      "answers": ["Protocol", "Server", "Router"],
+      "correctAnswerIndex": 0
+    },
+    {
+      "question": "What is CSS?",
+      "answers": ["Styles", "Script", "Markup"],
+      "correctAnswerIndex": 0
+    }
+  ]
+}
