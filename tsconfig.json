@@ -12,8 +12,8 @@
     "paths": {
       "*": ["src/*"]
     },
-    "allowJs": true, 
-    "checkJs": true
+    "allowJs": true,
+    "checkJs": true,
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx"
   },
