@@ -1,12 +1,6 @@
-import {
-  createPublicClient,
-  getContract,
-  http,
-  parseAbi,
-  parseEther,
-} from "viem";
+import { createPublicClient, getContract, http } from "viem";
 import { optimism } from "viem/chains";
-import { FAUCET_CONTRACT_ADDRESS, OP_CHAIN_ID } from "./utils.js";
+import { FAUCET_CONTRACT_ADDRESS, OP_CHAIN_ID } from "./utils";
 import { faucetABI } from "../abi/faucetABI";
 
 const publicClient = createPublicClient({

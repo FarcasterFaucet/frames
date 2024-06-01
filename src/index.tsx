@@ -1,9 +1,12 @@
 import { Button, Frog } from "frog";
 import { devtools } from "frog/dev";
 import { serveStatic } from "frog/serve-static";
-import { getUserStatus, registerUser } from "./lib/faucet.js";
-import { ClaimTime } from "./components/ClaimTime.js";
-import Claim from "./components/Claim.js";
+
+import Claim from "./components/Claim";
+import ClaimTime from "./components/ClaimTime";
+import { Container, ContainerItem } from "./components/index";
+
+import { getUserStatus, registerUser } from "./lib/faucet";
 
 const imageStyles = {
   background: "white",
@@ -12,7 +15,6 @@ const imageStyles = {
   height: "100%",
 };
 
-import { Container, ContainerItem } from "./components/index.js";
 export const app = new Frog({
   // Supply a Hub to enable frame verification.
   // hub: neynar({ apiKey: 'NEYNAR_FROG_FM' }),

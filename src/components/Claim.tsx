@@ -1,5 +1,5 @@
-import { getCurrentPeriodPayout, getNextPeriodStart } from "../lib/faucet.js";
-import Time from "./Time.js";
+import { getCurrentPeriodPayout, getNextPeriodStart } from "../lib/faucet";
+import Time from "./Time";
 
 const decimals = 18; //TODO: Get decimals from token contract
 
