@@ -1,9 +1,7 @@
 import { Button, Frog, TextInput } from "frog";
 import { devtools } from "frog/dev";
 import { serveStatic } from "frog/serve-static";
-
 import { getUserStatus, registerUser } from "./lib/faucet.js";
-import { Box } from "./components/index.js";
 
 export const app = new Frog({
   // Supply a Hub to enable frame verification.
