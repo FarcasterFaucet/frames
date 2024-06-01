@@ -37,7 +37,7 @@ export async function getUserStatus(fid: number) {
   };
 }
 
-export async function getClaimTime() {
+export async function getNextPeriodStart() {
   const [firstPeriodStart, periodLength, currentPeriod] = await Promise.all([
     contract.read.firstPeriodStart(),
     contract.read.periodLength(),

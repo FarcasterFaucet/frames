@@ -1,13 +1,15 @@
-import { getClaimTime } from "../lib/faucet.js";
+import { getNextPeriodStart } from "../lib/faucet.js";
+import Time from "./Time.js";
 
 export async function ClaimTime() {
-  const claimTime = await getClaimTime();
+  const nextPeriodStart = await getNextPeriodStart();
   const currentTimeInSeconds = BigInt(Date.now()) / 1000n;
-  const claimIn = claimTime - currentTimeInSeconds;
+  const claimIn = nextPeriodStart - currentTimeInSeconds;
 
   return (
     <div style={{ display: "flex" }}>
-      can claim in {claimIn.toString()} seconds
+      <div style={{ marginRight: "12px" }}>can claim in </div>
+      <Time seconds={Number(claimIn)} />
     </div>
   );
 }

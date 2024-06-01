@@ -16,6 +16,7 @@
     "@typescript-eslint/eslint-plugin": "^7.11.0",
     "@typescript-eslint/parser": "^7.11.0",
     "bun": "latest",
-    "prettier": "^3.2.5"
+    "prettier": "^3.2.5",
+    "prop-types": "^15.8.1"
   }
 }

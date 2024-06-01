@@ -1,14 +1,14 @@
 import { Button, Frog } from "frog";
 import { devtools } from "frog/dev";
 import { serveStatic } from "frog/serve-static";
-import { getClaimTime, getUserStatus, registerUser } from "./lib/faucet.js";
+import { getUserStatus, registerUser } from "./lib/faucet.js";
 import { ClaimTime } from "./components/ClaimTime.js";
 import Claim from "./components/Claim.js";
 
 const imageStyles = {
   background: "white",
   display: "flex",
-  fontSize: 120,
+  fontSize: 50,
   height: "100%",
 };
 
@@ -35,11 +35,6 @@ app.frame("/checkClaim", async (c) => {
   }
 
   const { canClaim, registeredNextPeriod } = await getUserStatus(fid);
-
-  let claimTime = 0;
-  if (registeredNextPeriod) {
-    claimTime = await getClaimTime();
-  }
 
   return c.res({
     action: canClaim ? "/claimed" : "/registered",
