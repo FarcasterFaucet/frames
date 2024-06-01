@@ -1,7 +1,6 @@
 import { Button, Frog } from "frog";
 import { devtools } from "frog/dev";
 import { serveStatic } from "frog/serve-static";
-
 import { getUserStatus, registerUser } from "./lib/faucet.js";
 
 export const app = new Frog({
