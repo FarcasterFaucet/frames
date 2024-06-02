@@ -12,6 +12,7 @@ import { faucetABI } from './utils/abis.js'
 export const app = new Frog({
   assetsPath: '/',
   basePath: '/api',
+  browserLocation: '/',
   ui: { vars },
 })
 
@@ -28,11 +29,11 @@ app.frame('/', c => {
       <Box grow alignVertical="center" backgroundColor="white" padding="32" border={BORDER_SIMPLE}>
         <VStack gap="4">
           <Heading color="h1Text" align="center" size="48">
-            Farcaster Faucet
+            F😠😫🤕 Faucet
           </Heading>
 
           <Text align="center" size="20">
-            Join the excitement at ETHPrague 🇨🇿 with a new token that looks beyond venture capital distributions.
+            Join the excitement at ETHPrague 🇨🇿 with F😠😫🤕 the token that looks beyond venture capital distributions
           </Text>
         </VStack>
       </Box>
@@ -82,7 +83,7 @@ app.frame('/checkClaim', async c => {
         {canClaim ? (
           <VStack gap="4">
             <Heading color="h1Text" align="center" size="32">
-              You can now claim {formattedPayout} tokens!
+              You can now claim {formattedPayout} F😠😫🤕 tokens!
             </Heading>
             <Text align="center" size="20">
               Next period in {formatTime(Number(claimBefore))}
@@ -94,7 +95,7 @@ app.frame('/checkClaim', async c => {
           </Heading>
         ) : (
           <Heading color="h1Text" align="center" size="32">
-            Register for next period
+            Register for next period ⏰
           </Heading>
         )}
       </Box>
@@ -132,9 +133,6 @@ app.frame('/registered', async c => {
           <Heading color="h1Text" align="center" size="32">
             Registered successfuly!
           </Heading>
-          <Text align="center" size="12">
-            {transactionId}
-          </Text>
         </VStack>
       </Box>
     ),
