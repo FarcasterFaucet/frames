@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "frog": "^0.11.4",
-    "hono": "^4"
+    "hono": "^4",
+    "viem": "^2.13.3"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
