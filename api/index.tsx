@@ -9,10 +9,10 @@ import { handle } from 'frog/vercel'
 // import { Quiz } from './quiz/index.js'
 // import { kvGetDelegatedAddress, kvPutMnemonic } from './utils/kv.js'
 // import { dappySaveData } from './utils/dappykit.js'
-import { getCurrentPeriodPayout, getNextPeriodStart, getUserStatus } from './utils/faucet.ts'
-import { DECIMALS, FAUCET_CONTRACT_ADDRESS, OP_CHAIN_ID } from './utils/constants.ts'
-import { formatTime } from './utils/time.ts'
-import { faucetABI } from './utils/abis.ts'
+import { getCurrentPeriodPayout, getNextPeriodStart, getUserStatus } from './utils/faucet.js'
+import { DECIMALS, FAUCET_CONTRACT_ADDRESS, OP_CHAIN_ID } from './utils/constants.js'
+import { formatTime } from './utils/time.js'
+import { faucetABI } from './utils/abis.js'
 
 // const { ViemUtils, Utils } = dappykit
 // const { generateMnemonic, privateKeyToAccount, english, mnemonicToAccount } = ViemUtils
