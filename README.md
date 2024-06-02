@@ -1,24 +1,27 @@
-# DappyKit + Farcaster + Vercel Template
+# Welcome to Farecaster Faucet!
 
-This is a Quiz Typescript Frame template for Farcaster integrated with DappyKit. The template is ready to deploy on Vercel. A KV storage must be created to store user sessions for the project to work.
+Is a revolutionary platform designed to make token distribution fair, fun, and engaging. Say goodbye to airdrops (the old way) token handouts and embrace a new era where your daily participation matters.
 
-In the `./quiz.json` file, a list of questions and answers is stored.
-The project is configured in Vercel through environment variables. Here is the list of variables:
-- `APP_OWNER_FID` - a unique user number in Farcaster, the application administrator.
-- `APP_PK` - an ETH-compatible private key in 0x format for signing messages.
-- `APP_SHARE_URL` - the link to the Frame itself after deployment, needed to share the Quiz with other users.
-- `AUTH_SERVICE_ADDRESS` - **not required**. Auth signer address from https://github.com/DappyKit/farcaster-auth.
-- `APP_AUTH_URL` - **not required**. The link to the authorization Frame. You can provide your own if the standard one doesn't fit.
-- `APP_TITLE` - **not required**. The title of your application.
-- `KV_NAMESPACE` - **not required**. A unique namespace for your application. Required only if multiple applications use the same KV storage.
 
-## Create your custom Quiz with ChatGPT
+### Why choose us ?
+Fair and Transparent: every user has an equal opportunity to claim tokens. No more favoritism or randomness – your engagement determines your rewards.
 
-🆓 If you are a free ChatGPT user, you can generate a correct `quiz.json` file using this chat: https://chatgpt.com/g/g-UFjeBIRpE-dappykit-quiz-for-farcaster
+Daily Participation: To claim your share of tokens, simply sign a transaction every day. This keeps you actively involved and tuned in to the latest updates and opportunities within our community.
 
-💸 If you have a ChatGPT subscription, you can generate the entire project with the quiz in this chat: https://chatgpt.com/g/g-mxV7W9Rgi-dappykit-quiz-frame-for-farcaster
+Built on Farecaster Protocol: Utilizing the robust and secure Farecaster Protocol, enhancing user experience and engagement.
 
-To generate the quiz, you need to specify the topic of the questions, and ChatGPT will do the rest for you. You can also specify the number of questions you need to create. By default, the chat will generate 30 questions.
+Community-Driven: empowers DAOs and organizations to create their own faucets, fostering a vibrant and engaged community.
+
+
+## How It Works:
+
+Register: Need a valid Farecaster registered address and make sure to register for the faucet to start participating and become eligible for token claims. 
+
+Daily Claim: Sign a transaction every day using the Farecaster framework to claim your percentage of tokens from the faucet. Consistent daily participation is key.
+
+Stay Engaged: By participating daily, you stay updated on the latest developments and opportunities within communities.
+
+Maintain Eligibility: If you miss a day and fail to claim within the specified period, you will no longer receive tokens. To rejoin, you must register again.
 
 
 ## Installation
