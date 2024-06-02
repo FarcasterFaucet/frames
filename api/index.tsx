@@ -32,7 +32,7 @@ app.frame('/', c => {
           </Heading>
 
           <Text align="center" size="20">
-            Join the excitement at ETH-Prague with our exclusive token distribution faucet.
+            Join the excitement at ETHPrague 🇨🇿 with a new token that looks beyond venture capital distributions.
           </Text>
         </VStack>
       </Box>
@@ -85,7 +85,7 @@ app.frame('/checkClaim', async c => {
               You can now claim! {formattedPayout} tokens
             </Heading>
             <Text align="center" size="20">
-              Claim in the next {formatTime(Number(claimBefore))}
+              Next period in {formatTime(Number(claimBefore))}
             </Text>
           </VStack>
         ) : registeredNextPeriod ? (
@@ -94,7 +94,7 @@ app.frame('/checkClaim', async c => {
           </Heading>
         ) : (
           <Heading color="h1Text" align="center" size="32">
-            Register for next period.
+            Register for next period
           </Heading>
         )}
       </Box>
