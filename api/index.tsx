@@ -82,7 +82,7 @@ app.frame('/checkClaim', async c => {
         {canClaim ? (
           <VStack gap="4">
             <Heading color="h1Text" align="center" size="32">
-              You can now claim! {formattedPayout} tokens
+              You can now claim {formattedPayout} tokens!
             </Heading>
             <Text align="center" size="20">
               Next period in {formatTime(Number(claimBefore))}
@@ -120,7 +120,10 @@ app.transaction('claimAndOrRegister', (c: any) => {
 app.frame('/registered', async c => {
   const { transactionId } = c
 
-  const intents = [<Button.Reset>Done!</Button.Reset>]
+  const intents = [
+    <Button.Reset>Done!</Button.Reset>,
+    <Button.Link href={`https://optimistic.etherscan.io/tx/${transactionId}`}>View Tx</Button.Link>,
+  ]
 
   return c.res({
     image: (
@@ -141,7 +144,10 @@ app.frame('/registered', async c => {
 
 app.frame('/claimed', async c => {
   const { transactionId } = c
-  const intents = [<Button.Reset>Done!</Button.Reset>]
+  const intents = [
+    <Button.Reset>Done!</Button.Reset>,
+    <Button.Link href={`https://optimistic.etherscan.io/tx/${transactionId}`}>View Tx</Button.Link>,
+  ]
 
   return c.res({
     image: (
@@ -150,9 +156,6 @@ app.frame('/claimed', async c => {
           <Heading color="h1Text" align="center" size="32">
             Claimed successfuly!
           </Heading>
-          <Text align="center" size="12">
-            {transactionId}
-          </Text>
         </VStack>
       </Box>
     ),
