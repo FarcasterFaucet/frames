@@ -1,6 +1,6 @@
 # Welcome to Farecaster Faucet!
 
-Is a revolutionary platform designed to make token distribution fair, fun, and engaging. Say goodbye to airdrops (the old way) token handouts and embrace a new era where your daily participation matters.
+Is a revolutionary platform on top of Farecaster protocol designed to use frames as a fair fun, and engaging token distribution faucet. Say goodbye to airdrops (the old way) token handouts and embrace a new era where your daily participation matters.
 
 
 ### Why choose us ?
@@ -17,7 +17,7 @@ Community-Driven: empowers DAOs and organizations to create their own faucets, f
 
 Register: Need a valid Farecaster registered address and make sure to register for the faucet to start participating and become eligible for token claims. 
 
-Daily Claim: Sign a transaction every day using the Farecaster framework to claim your percentage of tokens from the faucet. Consistent daily participation is key.
+Daily Claim: Sign a transaction every day thow our Farecaster Fauct frane to claim your percentage of tokens from the faucet. Consistent daily participation is key.
 
 Stay Engaged: By participating daily, you stay updated on the latest developments and opportunities within communities.
 
