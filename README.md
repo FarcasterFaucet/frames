@@ -1,4 +1,4 @@
-# Welcome to Farecaster Faucet!
+# Welcome to F😠🙁🤕 Faucet!
 
 Is a revolutionary platform on top of Farecaster protocol designed to use frames as a fair fun, and engaging token distribution faucet. Say goodbye to airdrops (the old way) token handouts and embrace a new era where your daily participation matters.
 
